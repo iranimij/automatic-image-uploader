@@ -28,6 +28,7 @@ class AIU_Image_Uploader {
 	 */
 	public function __construct() {
 		add_action( 'save_post', [ $this, 'save_post_images' ], 10, 3 );
+		add_action( 'wp_ajax_aiu_save_settings', [ $this, 'save_settings' ] );
 	}
 
 	/**
@@ -76,5 +77,9 @@ class AIU_Image_Uploader {
 		);
 
 		wp_update_post( $args );
+	}
+
+	public function save_settings() {
+		var_dump($_POST);die();
 	}
 }

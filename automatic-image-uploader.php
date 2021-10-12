@@ -220,12 +220,18 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		 */
 		public function enqueue_admin_scripts() {
 			wp_enqueue_script(
-				'aui',
-				aiu()->plugin_url() . 'assets/dist/admin.js',
+				'aiu',
+				aiu()->plugin_url() . 'assets/dist/admin/admin.js',
 				[ 'lodash', 'wp-element', 'wp-i18n', 'wp-util' ],
 				aiu()->version(),
 				true
 			);
+
+			wp_localize_script( 'aiu', 'aiu', [
+				'nonce' => wp_create_nonce( 'aiu' ),
+			] );
+
+			wp_enqueue_style( 'aiu', aiu()->plugin_url() . 'assets/dist/admin/admin.css', [], self::version() );
 		}
 
 		/**

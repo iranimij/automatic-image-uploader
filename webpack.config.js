@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 module.exports = {
 	entry: {
-		'assets/dist/admin': path.resolve(
+		'assets/dist/admin/admin': path.resolve(
 			process.cwd(),
 			'includes/admin/src/index.js'
 		),
@@ -29,7 +29,7 @@ module.exports = {
 					{
 						loader: 'sass-loader',
 						options: {
-							prependData: "@import './src/variables';@import 'node_modules/bootstrap/scss/functions';@import 'node_modules/bootstrap/scss/variables';@import 'node_modules/bootstrap/scss/mixins';",
+							prependData: "@import './includes/admin/src/variables';",
 						},
 					},
 				],
@@ -47,7 +47,7 @@ module.exports = {
 		jquery: 'jQuery',
 		lodash: 'lodash', // Necessary for wp.media script.
 		'@wordpress/i18n': 'wp.i18n',
-		'@sellkit': 'sellkit',
+		'@aiu': 'aiu',
 	},
 	plugins: [
 		new MiniCssExtractPlugin( {
