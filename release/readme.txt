@@ -1,22 +1,22 @@
-=== Sellkit ===
-Contributors: artbees
-Tags: jupiter, jupiterx
+=== Automatic image uploader ===
+Contributors: imanabuhaydari
+Tags: automatically-image-uploader, image-uploader, auto upload images
 Requires at least: 4.7
-Tested up to: 5.4
+Tested up to: 5.8
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Core functionalities for Jupiter X theme.
+This plugin search for images in the content of posts and upload it automatically.
 
 == Description ==
 
-Core functionalities for Jupiter X theme.
+This plugin functionality happens when you want to save a new post, it search for external image links, and upload them into your site, then attach the images to the post.
 
 == Installation ==
 
-1. Install using the WordPress built-in Plugin installer, or Extract the zip file and drop the contents in the `wp-content/plugins/` directory of your WordPress installation.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
+Upload the "automatic image uploader" to plugin directory and Activate it.
+Before starting please check the settings page, "Settings > automatic image uploader" and change it.
 
 == Changelog ==
 

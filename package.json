@@ -9,7 +9,7 @@
     "dev": "cross-env NODE_ENV=development webpack --watch --mode development",
     "lint:js": "eslint assets/src/js",
     "format:js": "eslint --fix src assets/src/js",
-    "make:pot": "./vendor/bin/wp i18n make-pot . --allow-root --domain=aiu --skip-audit --exclude=\"build,docs,src,node_modules,vendor\" --headers='{\"Last-Translator\":\"Artbees Team <info@artbees.net>\",\"Language-Team\":\"Iman Abuhaydari <ImanAbuhaydari@gmail.com>\"}' --file-comment=\"Copyright (c) $(date +'%Y') Automatic Image Uploader.\" languages/aiu.pot",
+    "make:pot": "./vendor/bin/wp i18n make-pot . --allow-root --domain=aiu --skip-audit --exclude=\"build,docs,src,node_modules,vendor\" --headers='{\"Last-Translator\":\"Automatic image uploader <imanabuhaydari@gmail.com>\",\"Language-Team\":\"Iman Abuhaydari <ImanAbuhaydari@gmail.com>\"}' --file-comment=\"Copyright (c) $(date +'%Y') Automatic Image Uploader.\" languages/aiu.pot",
     "make:json": "./vendor/bin/wp i18n make-json languages --no-purge"
   },
   "devDependencies": {
@@ -64,10 +64,13 @@
     "yargs": "^11.0.0"
   },
   "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-regular-svg-icons": "^5.13.1",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "@mui/material": "^5.0.3",
     "array-move": "^3.0.1",
     "bootstrap": "^4.5.0",
     "classnames": "^2.2.6",
@@ -75,7 +78,8 @@
     "decode-html": "^2.0.0",
     "disable-scroll": "^0.5.1",
     "html-react-parser": "^1.2.6",
-    "react": "^16.13.1",
+    "jsx-runtime": "^1.2.0",
+    "react": "^17.0.2",
     "react-bootstrap": "^1.0.1",
     "react-datepicker": "^4.2.1",
     "react-dom": "^16.13.1",

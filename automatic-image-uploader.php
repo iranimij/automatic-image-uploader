@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Automatic_Image_Uploader.
+ * Plugin Name: Automatic Image Uploader.
  * Plugin URI: https://iranimij.com
  * Description: A simple plugin for uploading the images easily.
  * Version: 1.0.0
@@ -101,7 +101,7 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		 *
 		 * @since NEXT
 		 * @access public
-		 * @var Database
+		 * @var database
 		 */
 		public $db;
 
@@ -197,7 +197,11 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		 * @since NEXT
 		 */
 		public function admin_init() {
-			$this->load_files( [] );
+			$this->load_files( [
+				'class'
+			] );
+
+			new AIU_Image_Uploader();
 		}
 
 		/**
@@ -215,7 +219,13 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		 * @since NEXT
 		 */
 		public function enqueue_admin_scripts() {
-
+			wp_enqueue_script(
+				'aui',
+				aiu()->plugin_url() . 'assets/dist/admin.js',
+				[ 'lodash', 'wp-element', 'wp-i18n', 'wp-util' ],
+				aiu()->version(),
+				true
+			);
 		}
 
 		/**
@@ -225,39 +235,14 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		 * @SuppressWarnings(PHPMD.NPathComplexity)
 		 */
 		public function register_admin_menu() {
-			$menu_icon    = 'dashicons-align-right';
-			$menu_name    = __( 'Automatic_Image_Uploader', 'aiu' );
-			$initial_page = 'aiu';
-			$submenu      = [
-//				'aiu-analytic' => __( 'Analytics', 'aiu' ),
-//				'aiu-funnel' => __( 'Funnels', 'aiu' ),
-//				'aiu-dynamic-discount' => __( 'Dynamic Discounts', 'aiu' ),
-//				'aiu-personalised-coupon' => __( 'Personalised Coupons', 'aiu' ),
-//				'aiu-smart-alert' => __( 'Smart Alerts', 'aiu' ),
-//				'aiu-settings' => __( 'Settings', 'aiu' ),
-//				'aiu-component' => __( 'Components', 'aiu' ),
-			];
-
-			add_menu_page(
-				$menu_name,
-				$menu_name,
-				'manage_options',
-				$initial_page,
-				[ $this, 'register_admin_menu_callback' ],
-				$menu_icon,
-				'3.5'
-			);
-
-			foreach ( $submenu as $slug => $title ) {
-				add_submenu_page(
-					$initial_page,
-					"{$menu_name} {$title}",
-					$title,
+			add_submenu_page(
+					'options-general.php',
+					__( 'Automatic image uploader', 'aiu' ),
+					__( 'AIU', 'aiu' ),
 					'edit_theme_options',
-					$slug,
+					'aiu',
 					[ $this, 'register_admin_menu_callback' ]
-				);
-			}
+			);
 		}
 
 		/**
