@@ -1,5 +1,5 @@
 === Automatic image uploader ===
-Contributors: iranimij
+Contributors: imanabuhaydari
 Tags: automatically-image-uploader, image-uploader, auto upload images
 Requires at least: 4.7
 Tested up to: 5.8

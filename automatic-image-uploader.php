@@ -5,7 +5,6 @@
  * Description: A simple plugin for uploading the images easily.
  * Version: 1.0.0
  * Author: Iman Abuhaydari
- * Author URI: https://iranimij.com
  * Text Domain: aiu
  * License: GPL2
  *
