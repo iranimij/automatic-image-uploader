@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { render } from 'react-dom';
 import {
 	Button,
@@ -8,13 +8,18 @@ import {
 	FormControlLabel, FormGroup,
 } from '@mui/material';
 import { __ } from '@wordpress/i18n';
-import { nonce } from '@aiu';
+import { nonce, uploaderIsEnabled } from '@aiu';
 import './style.scss';
-import {useForm, Controller} from "react-hook-form";
-
 
 const App = () => {
 	const [ enableUploader, setEnableUploader ] = useState( false );
+	const [ saveMessage, setSaveMessage ] = useState( false );
+
+	useEffect( () => {
+		setTimeout( () => {
+			setSaveMessage( false );
+		}, 2000 );
+	}, [ saveMessage ] );
 
 	const onSubmit = ( e ) => {
 		e.persist();
@@ -27,7 +32,7 @@ const App = () => {
 		};
 
 		wp.ajax.post( data ).done( ( message ) => {
-			console.log('done',message);
+			setSaveMessage( message );
 		} ).fail( ( error ) => {
 			// eslint-disable-next-line no-console
 			console.log( error );
@@ -35,28 +40,35 @@ const App = () => {
 	};
 
 	const handleChange = ( e ) => {
-	  e.persist();
-	  setEnableUploader( e.target.checked );
-	}
+		e.persist();
+		setEnableUploader( e.target.checked );
+	};
 
 	return (
 		<React.Fragment>
 			<Card>
+				<div className="col-md-12 aiu-settings-header">
+					<h1>{ __( 'Settings', 'aiu' ) }</h1>
+				</div>
 				<form onSubmit={ onSubmit } >
 					<CardContent>
 						<FormGroup>
 							<FormControlLabel
+
 								control={
-									<Switch onChange={ handleChange }/>
+									<Switch onChange={ handleChange } defaultChecked={ uploaderIsEnabled == 'true' ? true : false } />
 								}
 								label={ __( 'Enable uploader', 'aiu' ) }
 							/>
 						</FormGroup>
 					</CardContent>
 					<div className="aiu-form-button">
-						<Button variant="contained" color="success" type="submit">
+						<Button variant="contained" color="success" type="submit" className="mb-2">
 							{ __( 'Save', 'aiu' ) }
 						</Button>
+						<div>
+							{ ! _.isEmpty( saveMessage ) ? saveMessage : '' }
+						</div>
 					</div>
 				</form>
 			</Card>

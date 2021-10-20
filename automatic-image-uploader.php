@@ -229,6 +229,7 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 
 			wp_localize_script( 'aiu', 'aiu', [
 				'nonce' => wp_create_nonce( 'aiu' ),
+				'uploaderIsEnabled' => get_option( 'aiu_enable_uploader' ),
 			] );
 
 			wp_enqueue_style( 'aiu', aiu()->plugin_url() . 'assets/dist/admin/admin.css', [], self::version() );

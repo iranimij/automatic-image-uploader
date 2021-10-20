@@ -28,7 +28,12 @@ class AIU_Image_Uploader {
 	 */
 	public function __construct() {
 		add_action( 'save_post', [ $this, 'save_post_images' ], 10, 3 );
-		add_action( 'wp_ajax_aiu_save_settings', [ $this, 'save_settings' ] );
+
+		$uploader_is_enabled = get_option( 'aiu_enable_uploader' );
+
+		if ( ! empty( $uploader_is_enabled ) ) {
+			add_action( 'wp_ajax_aiu_save_settings', [ $this, 'save_settings' ] );
+		}
 	}
 
 	/**
@@ -80,6 +85,11 @@ class AIU_Image_Uploader {
 	}
 
 	public function save_settings() {
-		var_dump($_POST);die();
+		wp_verify_nonce( 'aiu','nonce' );
+
+		$enable_uploader = filter_input( INPUT_POST, 'enable_uploader', FILTER_SANITIZE_STRING );
+		update_option( 'aiu_enable_uploader', $enable_uploader );
+
+		wp_send_json_success( __( 'The data has been saved.', 'aiu' ) );
 	}
 }
