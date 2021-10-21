@@ -1,14 +1,24 @@
 <?php
 /**
- * Plugin Name: Automatic Image Uploader.
- * Plugin URI: https://iranimij.com
- * Description: A simple plugin for uploading the images easily.
- * Version: 1.0.0
- * Author: Iman Abuhaydari
- * Text Domain: aiu
- * License: GPL2
+ * This file is read by WordPress to generate the plugin information in the plugin
+ * admin area. This file also includes all of the dependencies used by the plugin,
+ * registers the activation and deactivation functions, and defines a function
+ * that starts the plugin.
  *
- * @package Automatic_Image_Uploader
+ * @link              http://www.iranimij.com
+ * @since             1.0.0
+ * @package           Automatic_Image_uploader
+ *
+ * @wordpress-plugin
+ * Plugin Name:       automatic image uploader
+ * Plugin URI:        http://www.iranimij.com
+ * Description:       Upload your images automatically.
+ * Version:           1.0.1
+ * Author:            Iman Heydari
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       automatic-upload-images
+ * Domain Path:       /languages
  */
 
 defined( 'ABSPATH' ) || die();

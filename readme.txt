@@ -1,11 +1,11 @@
-=== Automatic image uploader ===
+=== Automatic Image Uploader ===
 Contributors: imanabuhaydari
-Tags: automatically-image-uploader, image-uploader, auto upload images
-Requires at least: 4.7
+Donate link: https://iranimij.com/
+Tags: upload, auto-upload-images, automatically, image, images, admin, administrator, post, save, media, automation, filter,upload-image,auto-wordpress
 Tested up to: 5.8
-Requires PHP: 5.6
-License: GPLv3
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Stable tag: 1.0.1
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 This plugin search for images in the content of posts and upload it automatically.
 
@@ -16,7 +16,7 @@ This plugin functionality happens when you want to save a new post, it search fo
 == Installation ==
 
 Upload the "automatic image uploader" to plugin directory and Activate it.
-Before starting please check the settings page, "Settings > automatic image uploader" and change it.
+Before starting please check the settings page, "Settings > AIU" and change it.
 
 == Changelog ==
 
