@@ -316,8 +316,11 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		 * @param array $file_names The names of the files to be loaded in the includes directory.
 		 */
 		public function load_files( $file_names = array() ) {
-
 			foreach ( $file_names as $file_name ) {
+				if ( strpos( $file_name, '../' ) !== false ) {
+					continue;
+				}
+
 				$path = self::plugin_dir() . 'includes/' . $file_name . '.php';
 
 				if ( file_exists( $path ) ) {
