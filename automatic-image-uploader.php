@@ -152,7 +152,6 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 			}
 
 			add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
-			add_action( 'admin_head', [ $this, 'remove_notice_for_persian_kit_pages' ] );
 			add_filter( 'admin_body_class', [ $this, 'persian_kit_admin_body_class' ] );
 		}
 
@@ -179,6 +178,7 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		 * @return void
 		 */
 		public function activation() {
+			update_option( 'aiu_enable_uploader', "true" );
 		}
 
 		/**
@@ -294,21 +294,6 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		}
 
 		/**
-		 * Remove notices.
-		 *
-		 * @since NEXT
-		 */
-		public function remove_notice_for_persian_kit_pages() {
-			?>
-			<style>
-				.notice {
-					display: none;
-				}
-			</style>
-			<?php
-		}
-
-		/**
 		 * Loads specified PHP files from the plugin includes directory.
 		 *
 		 * @since NEXT
@@ -317,14 +302,10 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		 */
 		public function load_files( $file_names = array() ) {
 			foreach ( $file_names as $file_name ) {
-				if ( strpos( $file_name, '../' ) !== false ) {
-					continue;
-				}
-
 				$path = self::plugin_dir() . 'includes/' . $file_name . '.php';
 
 				if ( file_exists( $path ) ) {
-					require_once $path;
+					require_once realpath( $path );
 				}
 			}
 		}

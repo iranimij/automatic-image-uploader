@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || die();
+
 class AIU_Image_Uploader {
 
 	const ALLOWED_FILE_EXTENTIONS = [
@@ -88,6 +90,7 @@ class AIU_Image_Uploader {
 		wp_verify_nonce( 'aiu','nonce' );
 
 		$enable_uploader = filter_input( INPUT_POST, 'enable_uploader', FILTER_SANITIZE_STRING );
+
 		update_option( 'aiu_enable_uploader', $enable_uploader );
 
 		wp_send_json_success( __( 'The data has been saved.', 'aiu' ) );
