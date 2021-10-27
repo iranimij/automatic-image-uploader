@@ -17,6 +17,7 @@
  * Author:            Iman Heydari
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Author URI:        http://www.iranimij.com
  * Text Domain:       automatic-upload-images
  * Domain Path:       /languages
  */
