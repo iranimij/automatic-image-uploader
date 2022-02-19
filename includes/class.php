@@ -31,11 +31,7 @@ class AIU_Image_Uploader {
 	public function __construct() {
 		add_action( 'save_post', [ $this, 'save_post_images' ], 10, 3 );
 
-		$uploader_is_enabled = get_option( 'aiu_enable_uploader' );
-
-		if ( ! empty( $uploader_is_enabled ) ) {
-			add_action( 'wp_ajax_aiu_save_settings', [ $this, 'save_settings' ] );
-		}
+		add_action( 'wp_ajax_aiu_save_settings', [ $this, 'save_settings' ] );
 	}
 
 	/**
@@ -58,22 +54,30 @@ class AIU_Image_Uploader {
 			return;
 		}
 
+		if ( wp_options_manager( 'automatic-image-uploader' )->select( 'aiu_enable_uploader' ) === 'false' ) {
+			return;
+		}
+
 		// unhook this function so it doesn't loop infinitely
 		remove_action( 'save_post', [ $this, 'save_post_images' ] );
 
 		$post_content = $post->post_content;
 		$urls = wp_extract_urls( $post_content );
 
-		foreach ( $urls as $url ) {
+		foreach ( $urls as $key => $url ) {
 			$file_type = wp_check_filetype($url);
 			$file_ext = $file_type['ext'];
 			$host_url = parse_url($url)['host'];
 
 			if ( in_array( $file_ext, self::ALLOWED_FILE_EXTENTIONS, true ) ) {
 				if ( empty( strpos( site_url(), $host_url) ) ) {
-					$new_url = media_sideload_image( $url, $post_id, null, 'src' );
+					$attachment_id = media_sideload_image( $url, $post_id, null, 'id' );
 
-					$post_content = str_replace( $url, $new_url, $post_content );
+					if ( 0 === $key && wp_options_manager( 'automatic-image-uploader' )->select( 'set_first_image_as_thumbnail' ) === 'true' ) {
+						set_post_thumbnail( $post_id, $attachment_id );
+					}
+
+					$post_content = str_replace( $url, wp_get_attachment_url( $attachment_id ), $post_content );
 				}
 			}
 		}
@@ -90,8 +94,9 @@ class AIU_Image_Uploader {
 		wp_verify_nonce( 'aiu','nonce' );
 
 		$enable_uploader = filter_input( INPUT_POST, 'enable_uploader', FILTER_SANITIZE_STRING );
+		$first_image_as_thumbnail = filter_input( INPUT_POST, 'first_image_is_thumbnail', FILTER_SANITIZE_STRING );
 
-		update_option( 'aiu_enable_uploader', $enable_uploader );
+		wp_options_manager( 'automatic-image-uploader' )->update( 'aiu_enable_uploader', $enable_uploader )->update( 'set_first_image_as_thumbnail', $first_image_as_thumbnail )->save();
 
 		wp_send_json_success( __( 'The data has been saved.', 'aiu' ) );
 	}

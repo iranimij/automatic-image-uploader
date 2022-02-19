@@ -220,7 +220,9 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		 * @since NEXT
 		 */
 		public function init() {
-			$this->load_files( [] );
+			$this->load_files( [
+				'wp-options-manager'
+			] );
 		}
 
 		/**
@@ -239,7 +241,7 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 
 			wp_localize_script( 'aiu', 'aiu', [
 				'nonce' => wp_create_nonce( 'aiu' ),
-				'uploaderIsEnabled' => get_option( 'aiu_enable_uploader' ),
+				'aiuOptions' => wp_options_manager( 'automatic-image-uploader' )->get(),
 			] );
 
 			wp_enqueue_style( 'aiu', aiu()->plugin_url() . 'assets/dist/admin/admin.css', [], self::version() );
