@@ -23,7 +23,7 @@ if ( ! class_exists( 'Wp_Options_Manager' ) ) {
 		 * @since 1.0.0
 		 * @var array
 		 */
-		private $options;
+		private static $options;
 
 		/**
 		 * Class instance.
@@ -67,17 +67,17 @@ if ( ! class_exists( 'Wp_Options_Manager' ) ) {
 		 * @param string $plugin_slug The plugin slug.
 		 */
 		private function set() {
-			if ( ! empty( $this->options ) && is_array( $this->options ) ) {
+			if ( ! empty( self::$options ) && is_array( self::$options ) ) {
 				return false;
 			}
 
-			$this->options = get_option( $this->key );
+			self::$options = get_option( $this->key );
 
-			if ( empty( $this->options ) ) {
-				$this->options = [ 'created_at' => time() ];
+			if ( empty( self::$options ) ) {
+				self::$options = [ 'created_at' => time() ];
 			}
 
-			if ( ! is_array( $this->options ) ) {
+			if ( ! is_array( self::$options ) ) {
 				return new WP_Error( 'something_went_wrong' );
 			}
 		}
@@ -90,7 +90,7 @@ if ( ! class_exists( 'Wp_Options_Manager' ) ) {
 		 * @param string $value The value.
 		 */
 		public function update( $key, $value ) {
-			$this->options[ $key ] = $value;
+			self::$options[ $key ] = $value;
 
 			return $this;
 		}
@@ -102,8 +102,8 @@ if ( ! class_exists( 'Wp_Options_Manager' ) ) {
 		 * @param string $key The key pf the item.
 		 */
 		public function delete( $key ) {
-			if ( ! empty( $this->options[ $key ] ) ) {
-				unset( $this->options[ $key ] );
+			if ( ! empty( self::$options[ $key ] ) ) {
+				unset( self::$options[ $key ] );
 			}
 		}
 
@@ -114,8 +114,8 @@ if ( ! class_exists( 'Wp_Options_Manager' ) ) {
 		 * @param string $key The key pf the item.
 		 */
 		public function select( $key ) {
-			if ( ! empty( $this->options[ $key ] ) ) {
-				return $this->options[ $key ];
+			if ( ! empty( self::$options[ $key ] ) ) {
+				return self::$options[ $key ];
 			}
 
 			return false;
@@ -128,7 +128,7 @@ if ( ! class_exists( 'Wp_Options_Manager' ) ) {
 		 * @param string $key The key pf the item.
 		 */
 		public function get() {
-			return $this->options;
+			return self::$options;
 		}
 
 		/**
@@ -139,7 +139,7 @@ if ( ! class_exists( 'Wp_Options_Manager' ) ) {
 		 * @param string $value The value.
 		 */
 		public function save() {
-			update_option( $this->key, $this->options );
+			update_option( $this->key, self::$options );
 		}
 	}
 }

@@ -10,10 +10,10 @@
  * @package           Automatic_Image_uploader
  *
  * @wordpress-plugin
- * Plugin Name:       automatic image uploader
+ * Plugin Name:       Automatic Image Uploader
  * Plugin URI:        http://www.iranimij.com
  * Description:       Upload your images automatically.
- * Version:           1.0.1
+ * Version:           1.2.1
  * Author:            Iman Heydari
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -179,7 +179,11 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		 * @return void
 		 */
 		public function activation() {
-			update_option( 'aiu_enable_uploader', "true" );
+			$this->load_files( [
+				'wp-options-manager'
+			] );
+
+			wp_options_manager( 'automatic-image-uploader' )->update( 'aiu_enable_uploader', 'true' )->save();
 		}
 
 		/**

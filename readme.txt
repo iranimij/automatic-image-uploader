@@ -2,8 +2,8 @@
 Contributors: imanabuhaydari
 Donate link: https://iranimij.com/
 Tags: upload, auto-upload-images, automatically, image, images, admin, administrator, post, save, media, automation, filter,upload-image,auto-wordpress
-Tested up to: 5.8
-Stable tag: 1.0.1
+Tested up to: 5.9
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
