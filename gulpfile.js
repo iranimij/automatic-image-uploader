@@ -166,7 +166,7 @@ module.exports.test = series(
 
 module.exports.release = series(
 	clean,
-	// run( 'npm run make:pot' ),
+	run( 'npm run make:pot' ),
 	run( 'npm run build' ),
 	run( 'npm run lint:js' ),
 	lintSass,

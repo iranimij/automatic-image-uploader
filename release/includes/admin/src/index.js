@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { render } from 'react-dom';
 import {
 	Button,
@@ -8,11 +8,12 @@ import {
 	FormControlLabel, FormGroup,
 } from '@mui/material';
 import { __ } from '@wordpress/i18n';
-import { nonce, uploaderIsEnabled } from '@aiu';
+import { nonce, aiuOptions } from '@aiu';
 import './style.scss';
 
 const App = () => {
-	const [ enableUploader, setEnableUploader ] = useState( false );
+	const [ enableUploader, setEnableUploader ] = useState( aiuOptions?.aiu_enable_uploader );
+	const [ firstImageIsThumbnail, setFirstImageIsThumbnail ] = useState( aiuOptions?.set_first_image_as_thumbnail );
 	const [ saveMessage, setSaveMessage ] = useState( false );
 
 	useEffect( () => {
@@ -27,6 +28,7 @@ const App = () => {
 
 		const data = {
 			enable_uploader: enableUploader,
+			first_image_is_thumbnail: firstImageIsThumbnail,
 			nonce,
 			action: 'aiu_save_settings',
 		};
@@ -44,6 +46,11 @@ const App = () => {
 		setEnableUploader( e.target.checked );
 	};
 
+	const handleSetThumbnailChange = ( e ) => {
+		e.persist();
+		setFirstImageIsThumbnail( e.target.checked );
+	};
+
 	return (
 		<React.Fragment>
 			<Card>
@@ -56,9 +63,20 @@ const App = () => {
 							<FormControlLabel
 
 								control={
-									<Switch onChange={ handleChange } defaultChecked={ uploaderIsEnabled == 'true' ? true : false } />
+									// eslint-disable-next-line camelcase
+									<Switch onChange={ handleChange } defaultChecked={ aiuOptions?.aiu_enable_uploader == 'true' ? true : false } />
 								}
 								label={ __( 'Enable uploader', 'aiu' ) }
+							/>
+						</FormGroup>
+						<FormGroup>
+							<FormControlLabel
+
+								control={
+									// eslint-disable-next-line camelcase
+									<Switch onChange={ handleSetThumbnailChange } defaultChecked={ aiuOptions?.set_first_image_as_thumbnail == 'true' ? true : false } />
+								}
+								label={ __( 'Set first image as thumbnail', 'aiu' ) }
 							/>
 						</FormGroup>
 					</CardContent>
