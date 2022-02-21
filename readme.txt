@@ -12,6 +12,10 @@ This plugin search for images in the content of posts and upload it automaticall
 == Description ==
 
 This plugin functionality happens when you want to save a new post, it search for external image links, and upload them into your site, then attach the images to the post.
+This plugin is so light and has been written with the least codes, So it does not decline your site speed.
+
+You can set the first image as a thumbnail, while uploading.( Please turn on the related switch in settings page )
+
 
 == Installation ==
 
@@ -19,6 +23,9 @@ Upload the "automatic image uploader" to plugin directory and Activate it.
 Before starting please check the settings page, "Settings > AIU" and change it.
 
 == Changelog ==
+
+= 1.2.1 =
+* Feature : Use first image as a thumbnail.
 
 = 1.0.0 =
 * Initial release
