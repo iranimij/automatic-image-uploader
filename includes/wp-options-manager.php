@@ -37,12 +37,10 @@ if ( ! class_exists( 'Wp_Options_Manager' ) ) {
 		 * Get a class instance.
 		 *
 		 * @since 1.0.0
-		 *
-		 * @param string $key Options key.
 		 */
-		public static function get_instance( $plugin_slug ) {
+		public static function get_instance() {
 			if ( null === self::$instance ) {
-				self::$instance = new self( $plugin_slug );
+				self::$instance = new self();
 			}
 
 			return self::$instance;
@@ -52,10 +50,9 @@ if ( ! class_exists( 'Wp_Options_Manager' ) ) {
 		 * Wp_Background_Process constructor.
 		 *
 		 * @since 1.0.0
-		 * @param string $plugin_slug The plugin slug.
 		 */
-		public function __construct( $plugin_slug ) {
-			$this->key = $plugin_slug;
+		public function __construct() {
+			$this->key = $this->get_plugin_slug();
 
 			$this->set();
 		}
@@ -141,6 +138,18 @@ if ( ! class_exists( 'Wp_Options_Manager' ) ) {
 		public function save() {
 			update_option( $this->key, self::$options );
 		}
+
+		/**
+		 * Gets plugin slug
+		 *
+		 * @since 1.0.0
+		 */
+		private function get_plugin_slug() {
+			$plugin_base_name = plugin_basename( __DIR__ );
+			$plugin_base_name = explode( '/', $plugin_base_name );
+
+			return $plugin_base_name[ 0 ];
+		}
 	}
 }
 
@@ -148,9 +157,8 @@ if ( ! class_exists( 'Wp_Options_Manager' ) ) {
  * Helper function
  *
  * @since 1.0.0
- * @param $plugin_slug
  * @return Wp_Options_Manager|null
  */
-function wp_options_manager( $plugin_slug ) {
-	return Wp_Options_Manager::get_instance( $plugin_slug );
+function wp_options_manager() {
+	return Wp_Options_Manager::get_instance();
 }

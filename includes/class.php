@@ -54,7 +54,7 @@ class AIU_Image_Uploader {
 			return;
 		}
 
-		if ( wp_options_manager( 'automatic-image-uploader' )->select( 'aiu_enable_uploader' ) === 'false' ) {
+		if ( wp_options_manager()->select( 'aiu_enable_uploader' ) === 'false' ) {
 			return;
 		}
 
@@ -73,7 +73,7 @@ class AIU_Image_Uploader {
 				if ( empty( strpos( site_url(), $host_url) ) ) {
 					$attachment_id = media_sideload_image( $url, $post_id, null, 'id' );
 
-					if ( 0 === $key && wp_options_manager( 'automatic-image-uploader' )->select( 'set_first_image_as_thumbnail' ) === 'true' ) {
+					if ( 0 === $key && wp_options_manager()->select( 'set_first_image_as_thumbnail' ) === 'true' ) {
 						set_post_thumbnail( $post_id, $attachment_id );
 					}
 
@@ -96,7 +96,7 @@ class AIU_Image_Uploader {
 		$enable_uploader = filter_input( INPUT_POST, 'enable_uploader', FILTER_SANITIZE_STRING );
 		$first_image_as_thumbnail = filter_input( INPUT_POST, 'first_image_is_thumbnail', FILTER_SANITIZE_STRING );
 
-		wp_options_manager( 'automatic-image-uploader' )->update( 'aiu_enable_uploader', $enable_uploader )->update( 'set_first_image_as_thumbnail', $first_image_as_thumbnail )->save();
+		wp_options_manager()->update( 'aiu_enable_uploader', $enable_uploader )->update( 'set_first_image_as_thumbnail', $first_image_as_thumbnail )->save();
 
 		wp_send_json_success( __( 'The data has been saved.', 'aiu' ) );
 	}
