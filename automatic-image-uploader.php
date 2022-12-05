@@ -13,12 +13,12 @@
  * Plugin Name:       Automatic Image Uploader
  * Plugin URI:        http://www.iranimij.com
  * Description:       Upload your images automatically.
- * Version:           1.3.1
+ * Version:           1.4.1
  * Author:            Iman Heydari
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Author URI:        http://www.iranimij.com
- * Text Domain:       automatic-upload-images
+ * Text Domain:       aiu
  * Domain Path:       /languages
  */
 
@@ -227,6 +227,8 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 			$this->load_files( [
 				'wp-options-manager'
 			] );
+
+			load_plugin_textdomain( 'aiu', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		}
 
 		/**
