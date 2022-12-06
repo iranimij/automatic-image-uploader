@@ -8,7 +8,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-12-06T05:46:34+01:00\n"
+"POT-Creation-Date: 2022-12-06T06:51:11+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: automatic-image-uploader\n"
@@ -30,11 +30,11 @@ msgstr ""
 msgid "Iman Heydari"
 msgstr ""
 
-#: automatic-image-uploader.php:265
+#: automatic-image-uploader.php:269
 msgid "Automatic image uploader"
 msgstr ""
 
-#: automatic-image-uploader.php:266
+#: automatic-image-uploader.php:270
 msgid "AIU"
 msgstr ""
 
