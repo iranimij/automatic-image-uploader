@@ -18,7 +18,7 @@
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Author URI:        http://www.iranimij.com
- * Text Domain:       aiu
+ * Text Domain:       automatic-image-uploader
  * Domain Path:       /languages
  */
 
@@ -228,7 +228,7 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 				'wp-options-manager'
 			] );
 
-			load_plugin_textdomain( 'aiu', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+			load_plugin_textdomain( 'automatic-image-uploader', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		}
 
 		/**
@@ -262,8 +262,8 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		public function register_admin_menu() {
 			add_submenu_page(
 					'options-general.php',
-					__( 'Automatic image uploader', 'aiu' ),
-					__( 'AIU', 'aiu' ),
+					__( 'Automatic image uploader', 'automatic-image-uploader' ),
+					__( 'AIU', 'automatic-image-uploader' ),
 					'edit_theme_options',
 					'aiu',
 					[ $this, 'register_admin_menu_callback' ]

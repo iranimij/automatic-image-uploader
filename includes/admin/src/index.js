@@ -55,7 +55,7 @@ const App = () => {
 		<React.Fragment>
 			<Card>
 				<div className="col-md-12 aiu-settings-header">
-					<h1>{ __( 'Settings', 'aiu' ) }</h1>
+					<h1>{ __( 'Settings', 'automatic-image-uploader' ) }</h1>
 				</div>
 				<form onSubmit={ onSubmit } >
 					<CardContent>
@@ -66,7 +66,7 @@ const App = () => {
 									// eslint-disable-next-line camelcase
 									<Switch onChange={ handleChange } defaultChecked={ aiuOptions?.aiu_enable_uploader == 'true' ? true : false } />
 								}
-								label={ __( 'Enable uploader', 'aiu' ) }
+								label={ __( 'Enable uploader', 'automatic-image-uploader' ) }
 							/>
 						</FormGroup>
 						<FormGroup>
@@ -76,13 +76,13 @@ const App = () => {
 									// eslint-disable-next-line camelcase
 									<Switch onChange={ handleSetThumbnailChange } defaultChecked={ aiuOptions?.set_first_image_as_thumbnail == 'true' ? true : false } />
 								}
-								label={ __( 'Set first image as thumbnail', 'aiu' ) }
+								label={ __( 'Set first image as thumbnail', 'automatic-image-uploader' ) }
 							/>
 						</FormGroup>
 					</CardContent>
 					<div className="aiu-form-button">
 						<Button variant="contained" color="success" type="submit" className="mb-2">
-							{ __( 'Save', 'aiu' ) }
+							{ __( 'Save', 'automatic-image-uploader' ) }
 						</Button>
 						<div>
 							{ ! _.isEmpty( saveMessage ) ? saveMessage : '' }
