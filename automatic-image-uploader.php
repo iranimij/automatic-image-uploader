@@ -13,7 +13,7 @@
  * Plugin Name:       Automatic Image Uploader
  * Plugin URI:        http://www.iranimij.com
  * Description:       Upload your images automatically.
- * Version:           1.4.1
+ * Version:           1.4.2
  * Author:            Iman Heydari
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt

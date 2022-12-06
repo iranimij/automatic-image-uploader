@@ -3,7 +3,7 @@ Contributors: iranimij
 Donate link: https://iranimij.com/
 Tags: upload, auto-upload-images, automatically, image, images, admin, administrator, post, save, media, automation, filter,upload-image,auto-wordpress
 Tested up to: 6.1.1
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
