@@ -237,6 +237,8 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 		 * @since NEXT
 		 */
 		public function enqueue_admin_scripts() {
+			wp_enqueue_editor();
+
 			wp_enqueue_script(
 				'aiu',
 				aiu()->plugin_url() . 'assets/dist/admin/admin.js',
@@ -251,6 +253,8 @@ if ( ! class_exists( 'Automatic_Image_Uploader' ) ) {
 			] );
 
 			wp_enqueue_style( 'aiu', aiu()->plugin_url() . 'assets/dist/admin/admin.css', [], self::version() );
+
+			wp_set_script_translations( 'aiu', 'automatic-image-uploader', aiu()->plugin_dir() . 'languages' );
 		}
 
 		/**
